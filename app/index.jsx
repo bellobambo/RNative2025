@@ -9,7 +9,7 @@ const Home = () => {
       <Image source={Logo} style={styles.img} />
       <Text style={[styles.title]}>The Navbar 1</Text>
       <Text style={{ marginTop: 10, marginBottom: 30 }}>Reading List App</Text>
-      <Link href="/" style={styles.link}>
+      <Link href="/about" style={styles.link}>
         About Page
       </Link>
       <Link href="/contact" style={styles.link}>
