@@ -15,13 +15,21 @@ import ThemedButton from "../../components/ThemedButton";
 import { Colors } from "../../constants/Colors";
 import ThemedTextInput from "../../components/ThemedTextInput";
 import { useState } from "react";
+import { useUser } from "../../hooks/useUser";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {
-    console.log("login form submited", email, password);
+  const { login } = useUser();
+
+  const handleSubmit = async () => {
+    try {
+      await login({ email, password });
+    } catch (error) {
+      console.error("Error registering user:", error);
+      console.log(error.message);
+    }
   };
 
   return (
