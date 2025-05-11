@@ -14,7 +14,9 @@ export function UserProvider({ children }) {
       setUser(response);
     } catch (error) {
       console.error("Error registering user:", error);
-      console.log(error.message);
+      throw Error(error.message);
+
+      // console.log(error.message);
     }
   }
   async function register({ email, password }) {
@@ -23,7 +25,8 @@ export function UserProvider({ children }) {
       await login({ email, password });
     } catch (error) {
       console.error("Error registering user:", error);
-      console.log(error.message);
+      throw Error(error.message);
+      // console.log(error.message);
     }
   }
   async function logout() {}
