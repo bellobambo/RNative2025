@@ -1,30 +1,14 @@
-import { View, useColorScheme, StyleSheet } from "react-native";
-import { Colors } from "../constants/Colors";
+import { Image, useColorScheme } from "react-native";
 
-const ThemedCard = ({ style, ...props }) => {
+import DarkLogo from "../assets/img/logo_dark.png";
+import LightLogo from "../assets/img/logo_light.png";
+
+const ThemedLogo = ({ ...props }) => {
   const colorScheme = useColorScheme();
 
-  const theme = Colors[colorScheme] ?? Colors.light;
+  const logo = colorScheme === "dark" ? DarkLogo : LightLogo;
 
-  return (
-    <View
-      style={[
-        {
-          backgroundColor: theme.background,
-        },
-        styles.card,
-        style,
-      ]}
-      {...props}
-    />
-  );
+  return <Image source={logo} {...props} />;
 };
 
-export default ThemedCard;
-
-const styles = StyleSheet.create({
-  card: {
-    borderRadius: 5,
-    padding: 20,
-  },
-});
+export default ThemedLogo;
