@@ -14,9 +14,9 @@ const GuestOnly = ({ children }) => {
     }
   }, [user, authChecked]);
 
-  if (!authChecked || user) {
-    return <ThemedLoader />;
-  }
+  // if (!authChecked || user) {
+  //   return <ThemedLoader />;
+  // }
 
   return children;
 };
