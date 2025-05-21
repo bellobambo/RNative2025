@@ -5,9 +5,11 @@ import Spacer from "../../components/Spacer";
 import ThemedText from "../../components/ThemedText";
 import ThemedView from "../../components/ThemedView";
 import ThemedCard from "../../components/ThemedCard";
+import { useRouter } from "expo-router";
 
 const Books = () => {
   const { books } = useBooks();
+  const router = useRouter();
 
   console.log("Books in component:", books);
   return (
@@ -24,7 +26,7 @@ const Books = () => {
         renderItem={(
           { item } // Proper destructuring here
         ) => (
-          <Pressable>
+          <Pressable onPress={() => router.push(`/books/${item.$id}`)}>
             <ThemedCard style={styles.card}>
               <ThemedText style={styles.title}>{item.title}</ThemedText>
               <ThemedText style={styles.title}>

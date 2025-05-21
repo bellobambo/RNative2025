@@ -28,8 +28,15 @@ export function BooksProvider({ children }) {
 
   async function fetchBookById(id) {
     try {
+      const response = await databases.getDocument(
+        DATABASE_ID,
+        COLLECTION_ID,
+        id
+      );
+      return response;
     } catch (error) {
       console.log(error.message);
+      throw error;
     }
   }
 
@@ -53,8 +60,13 @@ export function BooksProvider({ children }) {
 
   async function deleteBook(id) {
     try {
+      await databases.deleteDocument(DATABASE_ID, COLLECTION_ID, id);
+
+      setBooks((prevBooks) => prevBooks.filter((book) => book.$id !== id));
+      return true;
     } catch (error) {
-      console.message(error.message);
+      console.log(error.message);
+      throw error;
     }
   }
 
