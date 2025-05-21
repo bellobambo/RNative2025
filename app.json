@@ -27,6 +27,15 @@
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "671ad411-cf04-480c-98f3-ec1a96861298"
+      }
+    },
+    "owner": "bambobello"
   }
 }
