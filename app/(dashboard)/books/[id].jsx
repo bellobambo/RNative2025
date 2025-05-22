@@ -18,7 +18,7 @@ import { BooksContext } from "../../../contexts/BooksContext";
 const BookDetails = () => {
   const { id } = useLocalSearchParams();
   const router = useRouter();
-  const { fetchBookById, deleteBook } = useContext(BooksContext);
+  const { fetchBookById, deleteBook, updateBook } = useContext(BooksContext);
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -52,6 +52,18 @@ const BookDetails = () => {
     } finally {
       setIsDeleting(false);
     }
+  };
+
+  const handleEdit = () => {
+    router.push({
+      pathname: "/books/edit",
+      params: {
+        id: book.$id,
+        title: book.title,
+        author: book.author,
+        description: book.description,
+      },
+    });
   };
 
   if (loading) {
@@ -98,7 +110,16 @@ const BookDetails = () => {
 
           <Spacer height={24} />
 
-          <TouchableOpacity onPress={handleDelete} style={styles.purpleButton}>
+          <ThemedButton onPress={handleEdit}>
+            <Text style={styles.text}>Edit Book</Text>
+          </ThemedButton>
+
+          <Spacer height={16} />
+
+          <TouchableOpacity
+            onPress={handleDelete}
+            style={[styles.button, styles.deleteButton]}
+          >
             {isDeleting ? (
               <ActivityIndicator color="white" />
             ) : (
@@ -129,18 +150,28 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 8,
   },
-
-  purpleButton: {
-    backgroundColor: "#8a2be2",
+  button: {
     height: 50,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 20,
   },
+  editButton: {
+    backgroundColor: "#D3D3D31A",
+  },
+  deleteButton: {
+    backgroundColor: "#f44336",
+  },
   buttonText: {
     color: "white",
     fontSize: 16,
     fontWeight: "bold",
+  },
+  text: {
+    color: "#fff",
+    textAlign: "center",
+    textAlignVertical: "center",
+    flex: 1,
   },
 });

@@ -65,6 +65,7 @@ const DashboardLayout = () => {
         />
 
         <Tabs.Screen name="books/[id]" options={{ href: null }} />
+        <Tabs.Screen name="books/edit" options={{ href: null }} />
       </Tabs>
     </UserOnly>
   );

@@ -70,6 +70,24 @@ export function BooksProvider({ children }) {
     }
   }
 
+  async function updateBook(id, data) {
+    try {
+      const updatedBook = await databases.updateDocument(
+        DATABASE_ID,
+        COLLECTION_ID,
+        id,
+        data
+      );
+      setBooks((prevBooks) =>
+        prevBooks.map((book) => (book.$id === id ? updatedBook : book))
+      );
+      return updatedBook;
+    } catch (error) {
+      console.log(error.message);
+      throw error;
+    }
+  }
+
   useEffect(() => {
     let unsubscribe;
 
@@ -96,7 +114,14 @@ export function BooksProvider({ children }) {
 
   return (
     <BooksContext.Provider
-      value={{ books, fetchBooks, fetchBookById, createBook, deleteBook }}
+      value={{
+        books,
+        fetchBooks,
+        fetchBookById,
+        createBook,
+        deleteBook,
+        updateBook,
+      }}
     >
       {children}
     </BooksContext.Provider>
