@@ -12,7 +12,7 @@ const Profile = () => {
   useEffect(() => {
     if (!user) {
       Alert.alert("Not Logged In", "Please log in to view your profile", [
-        { text: "OK" },
+        { text: "Ok" },
       ]);
     }
   }, [user]);

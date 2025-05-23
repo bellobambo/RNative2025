@@ -39,7 +39,7 @@ const EditBook = () => {
     try {
       setIsLoading(true);
       await updateBook(id, { title, author, description });
-      setError(null); // Clear error on success
+      setError(null);
       router.replace("/books");
     } catch (err) {
       setError(err.message);
@@ -49,7 +49,7 @@ const EditBook = () => {
   };
 
   const handleCancel = () => {
-    setError(null); // Clear error when canceling
+    setError(null);
     router.back();
   };
 
@@ -67,7 +67,7 @@ const EditBook = () => {
             value={title}
             onChangeText={setTitle}
             placeholder="Book title"
-            placeholderTextColor="#aaa" // Lighter color for placeholder
+            placeholderTextColor="#aaa"
           />
 
           <Spacer height={16} />
