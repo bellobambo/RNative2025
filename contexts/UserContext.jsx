@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { account } from "../lib/appwrite";
 import { ID } from "react-native-appwrite";
-import { Alert } from "react-native"; // Import Alert for showing messages
+import { Alert } from "react-native";
 
 export const UserContext = createContext();
 
@@ -11,7 +11,6 @@ export function UserProvider({ children }) {
 
   async function login({ email, password }) {
     try {
-      // Check if there's an active session first
       const currentSession = await account
         .getSession("current")
         .catch(() => null);
