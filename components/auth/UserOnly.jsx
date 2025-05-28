@@ -11,7 +11,7 @@ const UserOnly = ({ children }) => {
       router.replace("/login");
     }
   }, [user, authChecked]);
-
+console.log(user)
   return children;
 };
 
